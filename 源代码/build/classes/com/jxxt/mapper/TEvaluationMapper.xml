@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.TEvaluationMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.TEvaluation" >
+        <result column="id" property="id" />
+        <result column="old_id" property="oldId" />
+        <result column="gardener_id" property="gardenerId" />
+        <result column="begin_time" property="beginTime" />
+        <result column="end_time" property="endTime" />
+        <result column="type" property="type" />
+        <result column="old_name" property="oldName" />
+        <result column="old_identity" property="oldIdentity" />
+        <result column="GARDENER_NAME" property="gardenerName" />
+        
+  </resultMap>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    *
+    from T_EVALUATION
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+     <select id="findPage" resultMap="BaseResultMap" >
+    select 
+    *
+    from T_EVALUATION
+     
+			<where>
+    		 	<if test="id != null and id != '' ">
+    		 		AND ID = #{id}
+    		 	</if>
+    		 	<if test="oldId != null and oldId != '' ">
+    		 		AND OLD_ID = #{oldId}
+    		 	</if>
+    		 	<if test="gardenerId != null and gardenerId != '' ">
+    		 		AND GARDENER_ID = #{gardenerId}
+    		 	</if>
+    		 	<if test="beginTime != null and beginTime != '' ">
+    		 		AND BEGIN_TIME = #{beginTime}
+    		 	</if>
+    		 	<if test="endTime != null and endTime != '' ">
+    		 		AND END_TIME = #{endTime}
+    		 	</if>
+    		 	<if test="type != null and type != '' ">
+    		 		AND TYPE = #{type}
+    		 	</if>
+    		 	<if test="oldName != null and oldName != '' ">
+    		 		AND OLD_NAME = #{oldName}
+    		 	</if>
+    		 	<if test="oldIdentity != null and oldIdentity != '' ">
+    		 		AND OLD_IDENTITY = #{oldIdentity}
+    		 	</if>
+    	</where>
+   
+  </select>
+  
+     <select id="findList" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TEvaluation">
+    select 
+    e.*,g.GARDENER_NAME
+    from T_EVALUATION e 
+    left join T_GARDENER g on e.GARDENER_ID = g.id
+   <where>
+		 	<if test="id != null and id != '' ">
+		 		AND e.ID = #{id}
+		 	</if>
+		 	<if test="oldId != null and oldId != '' ">
+		 		AND e.OLD_ID = #{oldId} and isnull(e.TYPE)
+		 	</if>
+		 	<if test="gardenerId != null and gardenerId != '' ">
+		 		AND e.GARDENER_ID = #{gardenerId}
+		 	</if>
+		 	<if test="beginTime != null and beginTime != '' ">
+		 		AND e.BEGIN_TIME = #{beginTime}
+		 	</if>
+		 	<if test="endTime != null and endTime != '' ">
+		 		AND e.END_TIME = #{endTime}
+		 	</if>
+		 	<if test="type != null and type != '' ">
+		 		AND e.TYPE = #{type}
+		 	</if>
+		 	<if test="oldName != null and oldName != '' ">
+		 		AND e.OLD_NAME = #{oldName}
+		 	</if>
+		 	<if test="oldIdentity != null and oldIdentity != '' ">
+		 		AND e.OLD_IDENTITY = #{oldIdentity}
+		 	</if>
+		 	
+	</where>
+	order by e.BEGIN_TIME asc
+  </select>
+  
+  
+  
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_EVALUATION
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.jxxt.entity.TEvaluation"   keyProperty="id" useGeneratedKeys="true" >
+    insert into T_EVALUATION
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      	<if test="oldId != null and oldId != ''" >
+      	  OLD_ID ,
+      	</if>
+      	<if test="gardenerId != null and gardenerId != ''" >
+      	  GARDENER_ID ,
+      	</if>
+      	<if test="beginTime != null and beginTime != ''" >
+      	  BEGIN_TIME ,
+      	</if>
+      	<if test="endTime != null and endTime != ''" >
+      	  END_TIME ,
+      	</if>
+      	<if test="type != null and type != ''" >
+      	  TYPE ,
+      	</if>
+      	<if test="oldName != null and oldName != ''" >
+      	  OLD_NAME ,
+      	</if>
+      	<if test="oldIdentity != null and oldIdentity != ''" >
+      	  OLD_IDENTITY ,
+      	</if>
+		
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			
+			<!--  -->
+				<if test="oldId != null and oldId != ''" >
+					#{oldId},
+				</if>
+				<if test="gardenerId != null and gardenerId != ''" >
+					#{gardenerId},
+				</if>
+				<if test="beginTime != null and beginTime != ''" >
+					#{beginTime},
+				</if>
+				<if test="endTime != null and endTime != ''" >
+					#{endTime},
+				</if>
+				<if test="type != null and type != ''" >
+					#{type},
+				</if>
+				<if test="oldName != null and oldName != ''" >
+					#{oldName},
+				</if>
+				<if test="oldIdentity != null and oldIdentity != ''" >
+					#{oldIdentity},
+				</if>
+		
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.TEvaluation" >
+    update T_EVALUATION
+    <set >
+			
+			
+			 <if test="id  != null and id != ''" >
+			  ID  = #{id },
+			</if>
+			
+			 <if test="oldId  != null and oldId != ''" >
+			  OLD_ID  = #{oldId },
+			</if>
+			
+			 <if test="gardenerId  != null and gardenerId != ''" >
+			  GARDENER_ID  = #{gardenerId },
+			</if>
+			
+			 <if test="beginTime  != null and beginTime != ''" >
+			  BEGIN_TIME  = #{beginTime },
+			</if>
+			
+			 <if test="endTime  != null and endTime != ''" >
+			  END_TIME  = #{endTime },
+			</if>
+			
+			 <if test="type  != null and type != ''" >
+			  TYPE  = #{type },
+			</if>
+			
+			 <if test="oldName  != null and oldName != ''" >
+			  OLD_NAME  = #{oldName },
+			</if>
+			
+			 <if test="oldIdentity  != null and oldIdentity != ''" >
+			  OLD_IDENTITY  = #{oldIdentity },
+			</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

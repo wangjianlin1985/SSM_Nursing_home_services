@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.TOldDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.TOldDetails" >
+        <result column="id" property="id" />
+        <result column="details" property="details" />
+        <result column="create_time" property="createTime" />
+        <result column="gardener_id" property="gardenerId" />
+        <result column="gardener_name" property="gardenerName" />
+        <result column="health_status" property="healthStatus" />
+        <result column="old_id" property="oldId" />
+  </resultMap>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    *
+    from T_OLD_DETAILS
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+     <select id="findPage" resultMap="BaseResultMap" >
+    select 
+    *
+    from T_OLD_DETAILS
+     
+			<where>
+    		 	<if test="id != null and id != '' ">
+    		 		AND ID = #{id}
+    		 	</if>
+    		 	<if test="details != null and details != '' ">
+    		 		AND DETAILS = #{details}
+    		 	</if>
+    		 	<if test="createTime != null and createTime != '' ">
+    		 		AND CREATE_TIME = #{createTime}
+    		 	</if>
+    		 	<if test="gardenerId != null and gardenerId != '' ">
+    		 		AND GARDENER_ID = #{gardenerId}
+    		 	</if>
+    		 	<if test="gardenerName != null and gardenerName != '' ">
+    		 		AND GARDENER_NAME = #{gardenerName}
+    		 	</if>
+    		 	<if test="healthStatus != null and healthStatus != '' ">
+    		 		AND HEALTH_STATUS = #{healthStatus}
+    		 	</if>
+    		 	<if test="oldId != null and oldId != '' ">
+    		 		AND OLD_ID = #{oldId}
+    		 	</if>
+    	</where>
+   
+  </select>
+  
+     <select id="findList" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TOldDetails">
+    select 
+    *
+    from T_OLD_DETAILS
+   <where>
+		 	<if test="id != null and id != '' ">
+		 		AND ID = #{id}
+		 	</if>
+		 	<if test="details != null and details != '' ">
+		 		AND DETAILS = #{details}
+		 	</if>
+		 	<if test="createTime != null and createTime != '' ">
+		 		AND CREATE_TIME = #{createTime}
+		 	</if>
+		 	<if test="gardenerId != null and gardenerId != '' ">
+		 		AND GARDENER_ID = #{gardenerId}
+		 	</if>
+		 	<if test="gardenerName != null and gardenerName != '' ">
+		 		AND GARDENER_NAME = #{gardenerName}
+		 	</if>
+		 	<if test="healthStatus != null and healthStatus != '' ">
+		 		AND HEALTH_STATUS = #{healthStatus}
+		 	</if>
+		 	<if test="oldId != null and oldId != '' ">
+		 		AND OLD_ID = #{oldId}
+		 	</if>
+	</where>
+	
+	order by  CREATE_TIME desc
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_OLD_DETAILS
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.jxxt.entity.TOldDetails"   keyProperty="id" useGeneratedKeys="true" >
+    insert into T_OLD_DETAILS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      	
+      	<if test="details != null and details != ''" >
+      	  DETAILS ,
+      	</if>
+      	<if test="createTime != null and createTime != ''" >
+      	  CREATE_TIME ,
+      	</if>
+      	<if test="gardenerId != null and gardenerId != ''" >
+      	  GARDENER_ID ,
+      	</if>
+      	<if test="gardenerName != null and gardenerName != ''" >
+      	  GARDENER_NAME ,
+      	</if>
+      	<if test="healthStatus != null and healthStatus != ''" >
+      	  HEALTH_STATUS ,
+      	</if>
+      	<if test="oldId != null and oldId != ''" >
+      	  OLD_ID ,
+      	</if>
+		
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			
+			
+				<if test="details != null and details != ''" >
+					#{details},
+				</if>
+				<if test="createTime != null and createTime != ''" >
+					#{createTime},
+				</if>
+				<if test="gardenerId != null and gardenerId != ''" >
+					#{gardenerId},
+				</if>
+				<if test="gardenerName != null and gardenerName != ''" >
+					#{gardenerName},
+				</if>
+				<if test="healthStatus != null and healthStatus != ''" >
+					#{healthStatus},
+				</if>
+				<if test="oldId != null and oldId != ''" >
+					#{oldId},
+				</if>
+		
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.TOldDetails" >
+    update T_OLD_DETAILS
+    <set >
+			
+			
+			 <if test="id  != null and id != ''" >
+			  ID  = #{id },
+			</if>
+			
+			 <if test="details  != null and details != ''" >
+			  DETAILS  = #{details },
+			</if>
+			
+			 <if test="createTime  != null and createTime != ''" >
+			  CREATE_TIME  = #{createTime },
+			</if>
+			
+			 <if test="gardenerId  != null and gardenerId != ''" >
+			  GARDENER_ID  = #{gardenerId },
+			</if>
+			
+			 <if test="gardenerName  != null and gardenerName != ''" >
+			  GARDENER_NAME  = #{gardenerName },
+			</if>
+			
+			 <if test="healthStatus  != null and healthStatus != ''" >
+			  HEALTH_STATUS  = #{healthStatus },
+			</if>
+			
+			 <if test="oldId  != null and oldId != ''" >
+			  OLD_ID  = #{oldId },
+			</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

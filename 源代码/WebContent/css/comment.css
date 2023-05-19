@@ -1,0 +1,218 @@
+*{
+margin:0;
+padding:0;
+list-style:none;
+text-decoration:none;
+}
+.wrapper{
+ width:100%;
+ heigh:100%;
+}
+/*客服热线*/
+.wrapper .header{
+width:100%;
+height:30px;
+background-color:#1778c7;
+/*border:1px solid #000;*/
+}
+.wrapper .header .top{
+width:1000px;
+height:30px;
+margin:0 auto;
+color:#fff;
+font-size:12px;
+line-height:30px;
+}
+.wrapper .header .top .hotline{
+float:left;
+}
+.wrapper .header .top .hotline img{
+width:30px;
+height:30px;
+float:left;
+}
+.wrapper .header .top .welcome{
+float:right;
+    margin-right: 10%;
+}
+.wrapper .header .top .welcome span {
+margin-left:20px;
+}
+
+.wrapper .header .top .welcome span a{
+color:#fff;
+}
+.wrapper .header .top .welcome span a:hover{
+color:#FFCC00;
+}
+.wrapper .nav{
+width:100%;
+height:80px;
+}
+.wrapper .nav .main{
+width:1000px;
+margin:0 auto;
+height:80px;
+}
+.wrapper .nav .main .logo-box img{
+    width: 50px;
+	height: 50px;
+    float: left;
+    padding-top: 14px;
+}
+.wrapper .nav .main .nav-right{
+float:right;
+margin-right: 10%;
+}
+.wrapper .nav .main .nav-right li{
+float:left;
+height:35px;
+line-height:35px;
+text-align:center;
+margin-left:20px;
+padding-top:20px;
+}
+.wrapper .nav .main .nav-right li.select{
+border-bottom:2px solid blue;
+}
+.wrapper .nav .main .nav-right li a{
+color:#000;
+}
+.wrapper .content{
+width:1000px;
+height:800px;
+margin:0 auto;
+margin-top:30px;
+}
+.wrapper .content .publish{
+	width: 1000px;
+	height: auto;
+}
+.wrapper .content .publish textarea{
+	float: left;
+}
+.wrapper .content .publish button{
+width: 100px; 
+	height: 40px; 
+	border-width: 0px; 
+	border-radius: 3px; 
+	background: #1778C7; 
+	cursor: pointer; 
+	outline: none; 
+	font-family: Microsoft YaHei;
+	color: white;
+	font-size: 16px;
+	margin-left: 18px;
+	margin-top: 51px;
+}
+.wrapper .content .comment{
+	width: 1000px;
+	height: auto;
+	margin-top: 30px;
+	position: relative;
+}
+.wrapper .content .comment .comment-area{
+	width:1000px ;
+	height: 130px;
+}
+
+.wrapper .content .comment .comment-area h2,.wrapper .content .comment .comment-detail .comment-detail2 h2{
+	font-size: 18px;
+	color: #1778C7;
+	float: left;
+	width: 130px;
+	height: 30px;
+
+}
+
+.wrapper .content .comment .comment-area .time,.wrapper .content .comment .comment-detail .comment-detail2 .time{
+	float:left;
+	    width: 200px;
+	height: 30px;
+	line-height: 30px;
+	display: block;
+}
+.wrapper .content .comment .comment-area p,.wrapper .content .comment .comment-detail .comment-detail2 p{
+	width:1000px;
+	height: auto;
+	display: inline-block;
+}
+.wrapper .content .comment .comment-detail .comment-detail2 p{
+	width: 900px;
+	margin-left: 10px;
+}
+.wrapper .content .comment .comment-detail .comment-detail2 h2{
+	margin-left: 10px;
+}
+.wrapper .content .comment .comment-area .dz{
+	background-image: url(../img/zan.png);
+	background-size: 100% 100%;
+	width: 24px;
+	height: 24px;
+	display: block;
+	float: left;
+	position: absolute;
+	right: 150px;
+	top:96px;
+	cursor:pointer;
+	
+}
+.wrapper .content .comment .comment-area .num{
+	font-size: 16px;
+	position: absolute;
+	right: 110px;
+	top:98px;
+	height: 28px;
+	line-height: 22px;
+	color: #8A8A8A;
+}
+.wrapper .content .comment .comment-area .btn1{
+	width: 80px; 
+		height: 40px; 
+		line-height: 40px;
+		border-width: 0px; 
+		border-radius: 3px; 
+		background: #1778C7; 
+		cursor: pointer; 
+		outline: none; 
+		font-family: Microsoft YaHei;
+		color: white;
+		font-size: 14px;
+		position: absolute;
+		right: 0px;
+		top:85px;
+}
+.wrapper .content .comment .comment-detail{
+	width: 960px;
+	height: auto;
+	margin-left: 40px;
+	background-color: #F9F9F9;
+	padding-top: 30px;
+}
+.wrapper .content .comment .comment-detail textarea{
+	display: none;
+}
+.wrapper .content .comment .comment-detail .btn2{
+	    width: 80px; 
+	    	height: 40px; 
+	    	line-height: 40px;
+	    	border-width: 0px; 
+	    	border-radius: 3px; 
+	    	background: #1778C7; 
+	    	cursor: pointer; 
+	    	outline: none; 
+	    	font-family: Microsoft YaHei;
+	    	color: white;
+	    	font-size: 14px;
+			position: absolute;
+		    right: 0px;
+		    top:215px;
+			display: none;
+}
+.wrapper .content .comment .comment-detail .comment-detail2{
+	width:960px ;
+	height: auto;
+	margin-top: 10px;
+	border-bottom: 1px solid #eee;
+	padding-bottom: 10px;
+}

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.TGuardianMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.TGuardian" >
+        <result column="id" property="id" />
+        <result column="guardian_name" property="guardianName" />
+        <result column="guardian_sex" property="guardianSex" />
+        <result column="guardian_identity" property="guardianIdentity" />
+        <result column="guardian_phone" property="guardianPhone" />
+        <result column="guardian_relation" property="guardianRelation" />
+        <result column="create_time" property="createTime" />
+         <result column="old_id" property="oldId" />
+        
+        
+  </resultMap>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    *
+    from T_GUARDIAN
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+     <select id="findPage" resultMap="BaseResultMap" >
+    select 
+    *
+    from T_GUARDIAN
+     
+			<where>
+    		 	<if test="id != null and id != '' ">
+    		 		AND ID = #{id}
+    		 	</if>
+    		 	<if test="guardianName != null and guardianName != '' ">
+    		 		AND GUARDIAN_NAME  like concat('%',#{guardianName},'%')
+    		 	</if>
+    		 	<if test="guardianSex != null and guardianSex != '' ">
+    		 		AND GUARDIAN_SEX = #{guardianSex}
+    		 	</if>
+    		 	<if test="guardianIdentity != null and guardianIdentity != '' ">
+    		 		AND GUARDIAN_IDENTITY = #{guardianIdentity}
+    		 	</if>
+    		 	<if test="guardianPhone != null and guardianPhone != '' ">
+    		 		AND GUARDIAN_PHONE = #{guardianPhone}
+    		 	</if>
+    		 	<if test="guardianRelation != null and guardianRelation != '' ">
+    		 		AND GUARDIAN_RELATION = #{guardianRelation}
+    		 	</if>
+    		 	<if test="createTime != null and createTime != '' ">
+    		 		AND CREATE_TIME = #{createTime}
+    		 	</if>
+    	</where>
+   
+  </select>
+  
+     <select id="findList" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TGuardian">
+    select 
+    g.*
+    from T_GUARDIAN g
+    left join T_OLD_GUARDIAN  o  on g.id = o.guardian_id
+   <where>
+		 	<if test="id != null and id != '' ">
+		 		AND g.ID = #{id}
+		 	</if>
+		 	<if test="guardianName != null and guardianName != '' ">
+		 		AND g.GUARDIAN_NAME = #{guardianName}
+		 	</if>
+		 	<if test="guardianSex != null and guardianSex != '' ">
+		 		AND g.GUARDIAN_SEX = #{guardianSex}
+		 	</if>
+		 	<if test="guardianIdentity != null and guardianIdentity != '' ">
+		 		AND g.GUARDIAN_IDENTITY = #{guardianIdentity}
+		 	</if>
+		 	<if test="guardianPhone != null and guardianPhone != '' ">
+		 		AND g.GUARDIAN_PHONE = #{guardianPhone}
+		 	</if>
+		 	<if test="guardianRelation != null and guardianRelation != '' ">
+		 		AND g.GUARDIAN_RELATION = #{guardianRelation}
+		 	</if>
+		 	<if test="createTime != null and createTime != '' ">
+		 		AND g.CREATE_TIME = #{createTime}
+		 	</if>
+		 	
+		 	<if test="oldId != null and oldId != '' ">
+		 		AND o.old_id = #{oldId}
+		 	</if>
+		 	
+	</where>
+  </select>
+  
+       <select id="findListAll" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TGuardian">
+    select 
+    *
+    from T_GUARDIAN 
+   
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_GUARDIAN
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.jxxt.entity.TGuardian"   keyProperty="id" useGeneratedKeys="true" >
+    insert into T_GUARDIAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      	
+      	<if test="guardianName != null and guardianName != ''" >
+      	  GUARDIAN_NAME ,
+      	</if>
+      	<if test="guardianSex != null and guardianSex != ''" >
+      	  GUARDIAN_SEX ,
+      	</if>
+      	<if test="guardianIdentity != null and guardianIdentity != ''" >
+      	  GUARDIAN_IDENTITY ,
+      	</if>
+      	<if test="guardianPhone != null and guardianPhone != ''" >
+      	  GUARDIAN_PHONE ,
+      	</if>
+      	<if test="guardianRelation != null and guardianRelation != ''" >
+      	  GUARDIAN_RELATION ,
+      	</if>
+      	<if test="createTime != null and createTime != ''" >
+      	  CREATE_TIME ,
+      	</if>
+		
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			
+			
+				<if test="guardianName != null and guardianName != ''" >
+					#{guardianName},
+				</if>
+				<if test="guardianSex != null and guardianSex != ''" >
+					#{guardianSex},
+				</if>
+				<if test="guardianIdentity != null and guardianIdentity != ''" >
+					#{guardianIdentity},
+				</if>
+				<if test="guardianPhone != null and guardianPhone != ''" >
+					#{guardianPhone},
+				</if>
+				<if test="guardianRelation != null and guardianRelation != ''" >
+					#{guardianRelation},
+				</if>
+				<if test="createTime != null and createTime != ''" >
+					#{createTime},
+				</if>
+		
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.TGuardian" >
+    update T_GUARDIAN
+    <set >
+			
+			
+			 <if test="id  != null and id != ''" >
+			  ID  = #{id },
+			</if>
+			
+			 <if test="guardianName  != null and guardianName != ''" >
+			  GUARDIAN_NAME  = #{guardianName },
+			</if>
+			
+			 <if test="guardianSex  != null and guardianSex != ''" >
+			  GUARDIAN_SEX  = #{guardianSex },
+			</if>
+			
+			 <if test="guardianIdentity  != null and guardianIdentity != ''" >
+			  GUARDIAN_IDENTITY  = #{guardianIdentity },
+			</if>
+			
+			 <if test="guardianPhone  != null and guardianPhone != ''" >
+			  GUARDIAN_PHONE  = #{guardianPhone },
+			</if>
+			
+			 <if test="guardianRelation  != null and guardianRelation != ''" >
+			  GUARDIAN_RELATION  = #{guardianRelation },
+			</if>
+			
+			 <if test="createTime  != null and createTime != ''" >
+			  CREATE_TIME  = #{createTime },
+			</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

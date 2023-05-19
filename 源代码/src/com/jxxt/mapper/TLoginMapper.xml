@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.TLoginMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.TLogin" >
+        <result column="id" property="id" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="role" property="role" />
+  </resultMap>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    *
+    from T_LOGIN
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+      <select id="login" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TLogin" >
+    select 
+    *
+    from T_LOGIN
+    where username = #{username}
+   
+  </select>
+  
+  
+  
+  
+  
+     <select id="findPage" resultMap="BaseResultMap" >
+    select 
+    *
+    from T_LOGIN
+     
+			<where>
+    		 	<if test="id != null and id != '' ">
+    		 		AND ID = #{id}
+    		 	</if>
+    		 	<if test="username != null and username != '' ">
+    		 	
+    		 		and USERNAME like concat('%',#{username},'%') 
+    		 	</if>
+    		 	<if test="password != null and password != '' ">
+    		 		AND PASSWORD = #{password}
+    		 	</if>
+    		 	<if test="role != null and role != '' ">
+    		 		AND ROLE = #{role}
+    		 	</if>
+    	</where>
+   
+  </select>
+  
+     <select id="findList" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TLogin">
+    select 
+    *
+    from T_LOGIN
+   <where>
+		 	<if test="id != null and id != '' ">
+		 		AND ID = #{id}
+		 	</if>
+		 	<if test="username != null and username != '' ">
+		 		AND USERNAME = #{username}
+		 	</if>
+		 	<if test="password != null and password != '' ">
+		 		AND PASSWORD = #{password}
+		 	</if>
+		 	<if test="role != null and role != '' ">
+		 		AND ROLE = #{role}
+		 	</if>
+	</where>
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_LOGIN
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.jxxt.entity.TLogin"  keyProperty="id" useGeneratedKeys="true" >
+    insert into T_LOGIN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+     
+      	<if test="username != null and username != ''" >
+      	  USERNAME ,
+      	</if>
+      	<if test="password != null and password != ''" >
+      	  PASSWORD ,
+      	</if>
+      	<if test="role != null and role != ''" >
+      	  ROLE ,
+      	</if>
+		
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			
+				
+				<if test="username != null and username != ''" >
+					#{username},
+				</if>
+				<if test="password != null and password != ''" >
+					#{password},
+				</if>
+				<if test="role != null and role != ''" >
+					#{role},
+				</if>
+		
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.TLogin" >
+    update T_LOGIN
+    <set >
+			
+			
+			 <if test="id  != null and id != ''" >
+			  ID  = #{id },
+			</if>
+			
+			 <if test="username  != null and username != ''" >
+			  USERNAME  = #{username },
+			</if>
+			
+			 <if test="password  != null and password != ''" >
+			  PASSWORD  = #{password },
+			</if>
+			
+			 <if test="role  != null and role != ''" >
+			  ROLE  = #{role },
+			</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

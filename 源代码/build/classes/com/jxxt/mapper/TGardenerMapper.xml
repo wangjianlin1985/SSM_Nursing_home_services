@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.TGardenerMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.TGardener" >
+        <result column="id" property="id" />
+        <result column="gardener_name" property="gardenerName" />
+        <result column="gardener_sex" property="gardenerSex" />
+        <result column="gardener_identity" property="gardenerIdentity" />
+        <result column="gardener_age" property="gardenerAge" />
+        <result column="gardener_status" property="gardenerStatus" />
+        
+          <result column="num1" property="num1" />
+            <result column="num2" property="num2" />
+              <result column="num3" property="num3" />
+                <result column="num4" property="num4" />
+                
+        
+        
+  </resultMap>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    *
+    from T_GARDENER
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+    
+     <select id="findOrderby" resultMap="BaseResultMap" >
+   SELECT g.*,
+(SELECT COUNT(*)   FROM  t_evaluation e WHERE e.`gardener_id` = g.id AND e.`type`=1 )num1,
+(SELECT COUNT(*)   FROM  t_evaluation e WHERE e.`gardener_id` = g.id AND e.`type`=2 )num2,
+(SELECT COUNT(*)   FROM  t_evaluation e WHERE e.`gardener_id` = g.id AND e.`type`=3 )num3,
+(SELECT COUNT(*)   FROM  t_evaluation e WHERE e.`gardener_id` = g.id AND e.`type`=4 )num4
+  FROM t_gardener g  ORDER BY num4 DESC
+  
+  
+  
+  </select>
+  
+  
+  
+  
+     <select id="findPage" resultMap="BaseResultMap" >
+    select 
+    *
+    from T_GARDENER
+     
+			<where>
+    		 	<if test="id != null and id != '' ">
+    		 		AND ID = #{id}
+    		 	</if>
+    		 	<if test="gardenerName != null and gardenerName != '' ">
+    		 		AND GARDENER_NAME  like concat('%',#{gardenerName},'%')
+    		 	</if>
+    		 	<if test="gardenerSex != null and gardenerSex != '' ">
+    		 		AND GARDENER_SEX = #{gardenerSex}
+    		 	</if>
+    		 	<if test="gardenerIdentity != null and gardenerIdentity != '' ">
+    		 		AND GARDENER_IDENTITY = #{gardenerIdentity}
+    		 	</if>
+    		 	<if test="gardenerAge != null and gardenerAge != '' ">
+    		 		AND GARDENER_AGE = #{gardenerAge}
+    		 	</if>
+    		 	<if test="gardenerStatus != null and gardenerStatus != '' ">
+    		 		AND GARDENER_STATUS = #{gardenerStatus}
+    		 	</if>
+    	</where>
+   
+  </select>
+  
+     <select id="findList" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TGardener">
+    select 
+    *
+    from T_GARDENER
+   <where>
+		 	<if test="id != null and id != '' ">
+		 		AND ID = #{id}
+		 	</if>
+		 	<if test="gardenerName != null and gardenerName != '' ">
+		 		AND GARDENER_NAME = #{gardenerName}
+		 	</if>
+		 	<if test="gardenerSex != null and gardenerSex != '' ">
+		 		AND GARDENER_SEX = #{gardenerSex}
+		 	</if>
+		 	<if test="gardenerIdentity != null and gardenerIdentity != '' ">
+		 		AND GARDENER_IDENTITY = #{gardenerIdentity}
+		 	</if>
+		 	<if test="gardenerAge != null and gardenerAge != '' ">
+		 		AND GARDENER_AGE = #{gardenerAge}
+		 	</if>
+		 	<if test="gardenerStatus != null and gardenerStatus != '' ">
+		 		AND GARDENER_STATUS = #{gardenerStatus}
+		 	</if>
+	</where>
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_GARDENER
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.jxxt.entity.TGardener"   keyProperty="id" useGeneratedKeys="true" >
+    insert into T_GARDENER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      	
+      	<if test="gardenerName != null and gardenerName != ''" >
+      	  GARDENER_NAME ,
+      	</if>
+      	<if test="gardenerSex != null and gardenerSex != ''" >
+      	  GARDENER_SEX ,
+      	</if>
+      	<if test="gardenerIdentity != null and gardenerIdentity != ''" >
+      	  GARDENER_IDENTITY ,
+      	</if>
+      	<if test="gardenerAge != null and gardenerAge != ''" >
+      	  GARDENER_AGE ,
+      	</if>
+      	<if test="gardenerStatus != null and gardenerStatus != ''" >
+      	  GARDENER_STATUS ,
+      	</if>
+		
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			
+				
+				<if test="gardenerName != null and gardenerName != ''" >
+					#{gardenerName},
+				</if>
+				<if test="gardenerSex != null and gardenerSex != ''" >
+					#{gardenerSex},
+				</if>
+				<if test="gardenerIdentity != null and gardenerIdentity != ''" >
+					#{gardenerIdentity},
+				</if>
+				<if test="gardenerAge != null and gardenerAge != ''" >
+					#{gardenerAge},
+				</if>
+				<if test="gardenerStatus != null and gardenerStatus != ''" >
+					#{gardenerStatus},
+				</if>
+		
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.TGardener" >
+    update T_GARDENER
+    <set >
+			
+			
+			 <if test="id  != null and id != ''" >
+			  ID  = #{id },
+			</if>
+			
+			 <if test="gardenerName  != null and gardenerName != ''" >
+			  GARDENER_NAME  = #{gardenerName },
+			</if>
+			
+			 <if test="gardenerSex  != null and gardenerSex != ''" >
+			  GARDENER_SEX  = #{gardenerSex },
+			</if>
+			
+			 <if test="gardenerIdentity  != null and gardenerIdentity != ''" >
+			  GARDENER_IDENTITY  = #{gardenerIdentity },
+			</if>
+			
+			 <if test="gardenerAge  != null and gardenerAge != ''" >
+			  GARDENER_AGE  = #{gardenerAge },
+			</if>
+			
+			 <if test="gardenerStatus  != null and gardenerStatus != ''" >
+			  GARDENER_STATUS  = #{gardenerStatus },
+			</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>

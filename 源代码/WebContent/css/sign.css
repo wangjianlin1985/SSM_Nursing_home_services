@@ -1,0 +1,116 @@
+/* CSS Document */
+*{
+margin:0;
+padding:0;
+list-style:none;
+text-decoration:none;
+}
+body,html{
+ width:100%;
+ heigh:100%;
+ overflow-x:hidden;
+}
+
+.wrapper{
+ width:100%;
+ heigh:100%;
+}
+/*客服热线*/
+.wrapper .header{
+width:100%;
+height:30px;
+background-color:#1778c7;
+/*border:1px solid #000;*/
+}
+.wrapper .header .top{
+width:1000px;
+height:30px;
+margin:0 auto;
+color:#fff;
+font-size:12px;
+line-height:30px;
+}
+.wrapper .header .top .hotline{
+float:left;
+}
+.wrapper .header .top .hotline img{
+width:30px;
+height:30px;
+float:left;
+}
+.wrapper .header .top .welcome{
+float:right;
+}
+.wrapper .header .top .welcome span {
+margin-left:20px;
+}
+
+.wrapper .header .top .welcome span a{
+color:#fff;
+}
+.wrapper .header .top .welcome span a:hover{
+color:#FFCC00;
+}
+.wrapper .nav{
+width:100%;
+height:80px;
+}
+.wrapper .nav .main{
+width:1000px;
+margin:0 auto;
+height:80px;
+}
+.wrapper .nav .main .logo-box img{
+    width: 50px;
+	height: 50px;
+    float: left;
+    padding-top: 14px;
+}
+.wrapper .nav .main .nav-right{
+float:right;
+}
+.wrapper .nav .main .nav-right li{
+float:left;
+height:35px;
+line-height:35px;
+text-align:center;
+margin-left:20px;
+padding-top:20px;
+}
+.wrapper .nav .main .nav-right li.active{
+border-bottom:2px solid blue;
+}
+.wrapper .nav .main .nav-right li a{
+color:#000;
+}
+
+.wrapper .content{
+width:1000px;
+height:auto;
+margin:0 auto;
+margin-top:30px;
+margin-bottom: 20px;
+}
+.wrapper .content .con-main{
+	width: 100%;
+	height: 300px;
+	padding-top: 25px;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #eee;
+}
+.wrapper .content .con-main img{
+	width: 300px;
+	height: 300px;
+	float: left;
+	margin-left: 50px;
+}
+.wrapper .content .con-main span{
+	width:525px ;
+	font-size: 18px;
+	height: 150px;
+	line-height: 25px;
+	display: block;
+	float: left;
+	margin-top: 75px;
+	margin-left: 50px;
+}

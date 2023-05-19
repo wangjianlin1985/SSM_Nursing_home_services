@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxxt.mapper.TOldGuardianMapper" >
+  <resultMap id="BaseResultMap" type="com.jxxt.entity.TOldGuardian" >
+        <result column="id" property="id" />
+        <result column="old_id" property="oldId" />
+        <result column="guardian_id" property="guardianId" />
+  </resultMap>
+ 
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    *
+    from T_OLD_GUARDIAN
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+     <select id="findPage" resultMap="BaseResultMap" >
+    select 
+    *
+    from T_OLD_GUARDIAN
+     
+			<where>
+    		 	<if test="id != null and id != '' ">
+    		 		AND ID = #{id}
+    		 	</if>
+    		 	<if test="oldId != null and oldId != '' ">
+    		 		AND OLD_ID = #{oldId}
+    		 	</if>
+    		 	<if test="guardianId != null and guardianId != '' ">
+    		 		AND GUARDIAN_ID = #{guardianId}
+    		 	</if>
+    	</where>
+   
+  </select>
+  
+     <select id="findList" resultMap="BaseResultMap" parameterType="com.jxxt.entity.TOldGuardian">
+    select 
+    *
+    from T_OLD_GUARDIAN
+   <where>
+		 	<if test="id != null and id != '' ">
+		 		AND ID = #{id}
+		 	</if>
+		 	<if test="oldId != null and oldId != '' ">
+		 		AND OLD_ID = #{oldId}
+		 	</if>
+		 	<if test="guardianId != null and guardianId != '' ">
+		 		AND GUARDIAN_ID = #{guardianId}
+		 	</if>
+	</where>
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from T_OLD_GUARDIAN
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insertSelective" parameterType="com.jxxt.entity.TOldGuardian"   keyProperty="id" useGeneratedKeys="true" >
+    insert into T_OLD_GUARDIAN
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      
+      	<if test="oldId != null and oldId != ''" >
+      	  OLD_ID ,
+      	</if>
+      	<if test="guardianId != null and guardianId != ''" >
+      	  GUARDIAN_ID ,
+      	</if>
+		
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+			
+				<if test="oldId != null and oldId != ''" >
+					#{oldId},
+				</if>
+				<if test="guardianId != null and guardianId != ''" >
+					#{guardianId},
+				</if>
+		
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxxt.entity.TOldGuardian" >
+    update T_OLD_GUARDIAN
+    <set >
+			
+			
+			 <if test="id  != null and id != ''" >
+			  ID  = #{id },
+			</if>
+			
+			 <if test="oldId  != null and oldId != ''" >
+			  OLD_ID  = #{oldId },
+			</if>
+			
+			 <if test="guardianId  != null and guardianId != ''" >
+			  GUARDIAN_ID  = #{guardianId },
+			</if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+ 
+</mapper>
